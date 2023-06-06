@@ -1,5 +1,11 @@
 package com.testes;
 
+import com.kruskal.*;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class TestEdge {
   //Caso de teste para verificar se a comparação retorna -1 quando
     //o weight do Edge atual é menor do que o weight do Edge passado como parâmetro:

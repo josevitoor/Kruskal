@@ -9,17 +9,19 @@ public class Algorithm {
     private ArrayList<Edge> edgeList;
     private ArrayList<Node> nodesList;
 
-    public Algorithm(ArrayList<Vertex> v, ArrayList<Edge> e) {
-        //Setando a lista de vértices, arestas e nós
-        vertexList = v;
-        edgeList = e;
-        nodesList = new ArrayList<Node>(vertexList.size());
-        setNodes(vertexList);
+    public Algorithm(ArrayList<Vertex> v, ArrayList<Edge> e) throws IOException {
+        if(v.isEmpty() || e.isEmpty()){
+            throw new IOException();
+        }else{
+            //Setando a lista de vértices, arestas e nós
+            vertexList = v;
+            edgeList = e;
+            nodesList = new ArrayList<Node>(vertexList.size());
+            setNodes(vertexList);
+        }
     }
 
-    public void calculateKruskal() throws IOException {
-        //Pegan o tempo inicial de execução do algoritmo
-        long start = System.nanoTime();
+    public String calculateKruskal(String fileName) throws IOException {
         //Define uma lista das arestas ordenadas em ordem crescente de custo
         ArrayList<Edge> edgeSortList = edgeList;
         Collections.sort(edgeSortList);
@@ -35,10 +37,8 @@ public class Algorithm {
                 union(a.getNo(), b.getNo());
             }
         }
-        //Pega o tempo de execução do algoritmo
-        long elapsed = System.nanoTime() - start;
         //Imprime o resultado
-        printGraph(outputGraph, elapsed);
+        return printGraph(outputGraph, fileName);
     }
 
     private int find(Node node) {
@@ -74,24 +74,18 @@ public class Algorithm {
         }
     }
 
-    private void printGraph(ArrayList<Edge> graph, long elapsed) throws IOException {
-        String print = "Tempo de execução do algorítmo: "+ elapsed +" ns\n";
-        print = print.concat("Initial Graph\n");
-        for (Edge e: edgeList) {
-            print = print.concat("(" + e.getA().getX() + "," +e.getA().getY() + ") ---" + e.getWeight() + "--- " +
-                    "(" + e.getB().getX() + "," +e.getB().getY() +")\n");
-        }
-        print = print.concat("Output Graph\n");
+    private String printGraph(ArrayList<Edge> graph, String fileName) throws IOException {
+        String print = "";
         for (Edge e: graph) {
             print = print.concat("(" + e.getA().getX() + "," +e.getA().getY() + ") ---" + e.getWeight() + "--- " +
                     "(" + e.getB().getX() + "," +e.getB().getY() +")\n");
         }
-        System.out.println(print);
-        generateFile(print);
+        generateFile(print, fileName);
+        return print;
     }
 
-    public void generateFile(String print) throws IOException {
-        BufferedWriter br = new BufferedWriter(new FileWriter("test.txt"));
+    public void generateFile(String print, String fileName) throws IOException {
+        BufferedWriter br = new BufferedWriter(new FileWriter(fileName));
         br.write(print);
         br.close();
     }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Cases {
 
-    public void createGraphCase1() throws IOException {
+    public String createGraphCase1() throws IOException {
         ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
         ArrayList<Edge> edgeList = new ArrayList<Edge>();
         //Criando os vértices
@@ -34,10 +34,10 @@ public class Cases {
         edgeList.add(edge6);
         //Passando o grafo pro calculo do algoritmo
         Algorithm kruskal = new Algorithm(vertexList, edgeList);
-        kruskal.calculateKruskal();
+        return kruskal.calculateKruskal("test.txt");
     }
 
-    public void createGraphCase2() throws IOException {
+    public String createGraphCase2() throws IOException {
         ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
         ArrayList<Edge> edgeList = new ArrayList<Edge>();
         //Criando os vértices
@@ -78,9 +78,9 @@ public class Cases {
         edgeList.add(edge10);
         //Passando o grafo pro calculo do algoritmo
         Algorithm kruskal = new Algorithm(vertexList, edgeList);
-        kruskal.calculateKruskal();
+        return kruskal.calculateKruskal("test.txt");
     }
-    public void createGraphCase3() throws IOException {
+    public String createGraphCase3() throws IOException {
         ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
         ArrayList<Edge> edgeList = new ArrayList<Edge>();
         //Criando os vértices
@@ -107,10 +107,10 @@ public class Cases {
         edgeList.add(edge6);
         //Passando o grafo pro calculo do algoritmo
         Algorithm kruskal = new Algorithm(vertexList, edgeList);
-        kruskal.calculateKruskal();
+        return kruskal.calculateKruskal("test.txt");
     }
 
-    public void createGraphCase4() throws IOException {
+    public String createGraphCase4() throws IOException {
         ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
         ArrayList<Edge> edgeList = new ArrayList<Edge>();
         //Criando os vértices
@@ -141,6 +141,6 @@ public class Cases {
         edgeList.add(edge7);
         //Passando o grafo pro calculo do algoritmo
         Algorithm kruskal = new Algorithm(vertexList, edgeList);
-        kruskal.calculateKruskal();
+        return kruskal.calculateKruskal("test.txt");
     }
 }

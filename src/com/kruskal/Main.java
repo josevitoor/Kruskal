@@ -22,19 +22,19 @@ public class Main {
             switch (option) {
                 case 1:
                     System.out.println("Case 1");
-                    cases.createGraphCase1();
+                    System.out.println(cases.createGraphCase1());
                     break;
                 case 2:
                     System.out.println("Case 2");
-                    cases.createGraphCase2();
+                    System.out.println(cases.createGraphCase2());
                     break;
                 case 3:
                     System.out.println("Case 3");
-                    cases.createGraphCase3();
+                    System.out.println(cases.createGraphCase3());
                     break;
                 case 4:
                     System.out.println("Case 4");
-                    cases.createGraphCase4();
+                    System.out.println(cases.createGraphCase4());
                     break;
                 case 0:
                     System.out.println("End");

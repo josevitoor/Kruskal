@@ -48,7 +48,7 @@ public class Algorithm {
         return node.getIndex();
     }
 
-    private void union(Node a, Node b) {
+    public void union(Node a, Node b) {
         //União de dois nós que estão em conjuntos diferentes
         int indexA = find(a);
         int indexB = find(b);

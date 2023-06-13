@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -227,5 +229,37 @@ public class TestAlgorithm {
         algorithm.union(nodeA, nodeB);
 
         assertEquals(nodeA.getIndex(), nodeB.getIndex());
+    }
+
+    @Test
+    void testGenerateFileKillMutante() throws IOException {
+        // Caso de teste válido: geração de arquivo
+        // Criando os vértices
+        Vertex vertex1 = new Vertex(5, 5);
+        Vertex vertex2 = new Vertex(10, 15);
+        vertexList.add(vertex1);
+        vertexList.add(vertex2);
+
+        // Criando as arestas
+        Edge edge1 = new Edge(vertex1, vertex2, 2);
+        edgeList.add(edge1);
+
+        // Passando o grafo para o cálculo do algoritmo
+        Algorithm kruskal = new Algorithm(vertexList, edgeList);
+        String result = kruskal.calculateKruskal("test.txt");
+
+        // Verificar se o arquivo foi gerado corretamente
+        File file = new File("test.txt");
+        assertTrue(file.exists());
+
+        // Verificar se o conteúdo do arquivo está correto
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        StringBuilder content = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            content.append(line).append("\n");
+        }
+        reader.close();
+        assertEquals(result, content.toString());
     }
 }
